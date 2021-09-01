@@ -1,0 +1,63 @@
+{% extends "favmovie\basic.html" %}
+{% load static %}
+
+{% block title %}
+block title
+
+{% endblock title %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css\stylee.css' %}" />
+{% endblock head %}
+
+
+
+
+ {% block body %} 
+
+ <h1 class="display-4 text-center">FAVOURITE MOVIES</h1>
+<div class=" d-flex justify-content-evenly co-container  grouppp ">
+ 
+ {% for i in data %}
+
+
+ <div class="card mb-3 mt-2 " style="width: 18rem;">
+  <img src= "/media/{{i.posters}}"class="card-img-top" alt="...">
+  <div class="card-body  textcolor">
+    <h5 class="card-title  ">{{i.name}}</h5>
+    <h7>Director Name : {{i.directorName}}</h7>
+    <h6>Earn : {{i.price}}</h6>
+    <h6>Release Date : {{i.releaseDate}}</h6>
+    <h6>IMDB Ratings : {{i.ratingImdb}}</h6>
+    
+      <a href="https://www.netflix.com/in/" class="btn btn-danger" target="__blank">WATCH THIS</a>
+  </div>
+</div>
+
+ {% endfor %}
+ 
+</div>
+ 
+
+
+ 
+ {% endblock body %}
+
+ 
+
+
+
+ 
+  
+  
+
+
+
+
+
+   
+
+   
+
+

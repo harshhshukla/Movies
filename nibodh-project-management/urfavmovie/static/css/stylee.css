@@ -1,0 +1,40 @@
+h1{
+    color: red;
+    
+    font-family: 'Cinzel', serif;
+    font-weight: 50px;
+}
+
+.co-container{
+    flex-wrap: wrap;
+  padding: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+ 
+  background-image: url(https://springboard-cdn.appadvice.com/wp-content/appadvice-v2-media/2016/11/Netflix-background_860c8ece6b34fb4f43af02255ca8f225-xl.jpg);
+}
+
+.grouppp{
+    padding: 50px;
+   
+}
+
+
+.display-4{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.textcolor{
+    background-color: black;
+    color: white;
+}
+
+.navback{
+    background-color: black;  
+}
+
+

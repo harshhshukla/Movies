@@ -1,0 +1,53 @@
+{% extends "course\basic.html" %}
+
+
+{% block title %}
+block title
+
+{% endblock title %}
+
+{% block css %}  
+ 
+    
+ 
+ {% endblock css %}
+
+
+ {% block body %} 
+<div class="container">
+    <div class="row display-1 center">contaact</div>
+<div class="col-12">
+    <form action="/urfavmovie/contactUsSubmit/" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+           <label for="exampleInputEmail1" class="form-label">Name </label>
+           <input type="text" class="form-control" name="NameCont" > 
+          
+         </div>
+         <div class="mb-3">
+           <label for="exampleInputEmail1" class="form-label">Email address</label>
+           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="EmailCon">
+           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+         </div>
+         <div class="mb-3">
+           <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+           <input type="number" class="form-control" name="phoneCon">
+           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+         </div>
+         <div class="mb-3">
+           <label for="exampleInputEmail1" class="form-label">Description</label>
+           <textarea name="desCon" class="form-control" cols="5" rows="3"></textarea>
+         
+         </div>
+        
+         <button type="submit" class="btn btn-primary">Submit</button>
+       </form>
+</div>
+
+
+    <div class="row">
+    </div>
+</div>
+
+ 
+ {% endblock body %}
