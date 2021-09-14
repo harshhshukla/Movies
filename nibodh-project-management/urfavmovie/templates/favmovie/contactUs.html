@@ -1,28 +1,36 @@
-{% extends "course\basic.html" %}
+{% extends "favmovie\basic.html" %}
 
-
-{% block title %}
-block title
-
-{% endblock title %}
 
 {% block css %}  
- 
-    
- 
- {% endblock css %}
+ .contavtt{
+  color: white;
+
+ flex-wrap: wrap;
+ padding: 35px;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+}
+
+{% endblock css %}
 
 
- {% block body %} 
-<div class="container">
-    <div class="row display-1 center">contaact</div>
-<div class="col-12">
+
+{% block body %} 
+
+<div class=" contactwidth contavtt " style="background-image:url(https://cdn.hipwallpaper.com/i/71/75/WRKAym.jpg);">
+  <h1 class="display-1  " >contact Us</h1>
+  <div class="div">
+<div class="col-3">
+  
+</div>
+<div class="col-4">
     <form action="/urfavmovie/contactUsSubmit/" method="POST">
         {% csrf_token %}
         <div class="mb-3">
            <label for="exampleInputEmail1" class="form-label">Name </label>
            <input type="text" class="form-control" name="NameCont" > 
-          
+           
          </div>
          <div class="mb-3">
            <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -39,14 +47,17 @@ block title
            <textarea name="desCon" class="form-control" cols="5" rows="3"></textarea>
          
          </div>
+         
+         
         
-         <button type="submit" class="btn btn-primary">Submit</button>
+         <button type="submit" class="btn btn-danger">Submit</button>
        </form>
 </div>
 
-
+</div>
     <div class="row">
     </div>
+  
 </div>
 
  

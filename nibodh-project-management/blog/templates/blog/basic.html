@@ -1,28 +1,12 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>{% block  title %} {% endblock %}
-    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-     {% block  head %} {% endblock head %}
-<style>
- 
-
-
-
-</style>
+{% extends "favmovie\basic.html" %}
 
 </head>
 <body>
- 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/course">Nibodh</a>
+  {% block body %}
+   <div class="navbar navback ">
+    <nav class="navbar navbar-expand-lg    ">
+        <div class="container-fluid  ">
+          <a class="navbar-brand" href="/">Nibodh</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -42,16 +26,8 @@
               </li>
               <li class="nav-item">
                 
-                <a class="nav-link" href="/blog/bloglist" class="btn btn-danger" >blog</a>
-               </li>
-               <div class="d-flex justify-content-end">
-                <li class="nav-item">
-                  <a class="nav-link" href="/members/logout"  >logout</a>
-                  
-                 </li>
-               </div>
-               
-               
+               <a class="nav-link" href="/blog/bloglist" class="btn btn-danger" >blog</a>
+              </li>
               
               
               
@@ -59,8 +35,9 @@
           </div>
         </div>
       </nav>
-    
-    {% block body %}  {% endblock body %}
+    </div>
+
+     {% endblock body %}
 
 
 

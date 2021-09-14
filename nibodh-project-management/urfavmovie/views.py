@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . models import favmovie , Contact 
 
-# Create your views here.
 
+# Create your views here.
+import json
 
 def Index(request):
      return render(request, "favmovie\basic.html")
@@ -32,19 +33,49 @@ def contactUsSubmit(request):
    
     return HttpResponse("hello")
 
-def Login(request):
-    return render(request, "favmovie\login.html",)
+
+def checkout(request):
+    str = request.POST.get("cartJson")
+    cart = json.loads(str)
+    currentCart = cart
+   
+    print(currentCart)
+    totalPrice = 0 
+    for id in cart:
+    
+    
+   
 
 
-def Signup(request):
-    return render(request, "favmovie\signup.html",)
+    
 
-def blogs(request):
-    return render(request, "favmovie\blog.html",)
 
-def blogcreate(request):
-    return render(request, "favmovie\blogcreate.html",)
+        temp= cart[id]
+        print(temp["value"])
+        tempOb = favmovie.objects.get(id=id)
+        price = tempOb.RentPrice
+        temp["price"]=price
+        temp["totalItemPrice"] = price * temp["value"]
+        totalPrice = totalPrice + temp["totalItemPrice"]
+        currentCart[id] = temp 
+    print(totalPrice)
+    params = {
+        "totalPrice" : totalPrice,
+        "data": currentCart
+    }
+    
+   
+   
+    return render(request, "favmovie\checkout.html",params)
 
-def blogdetails(request):
-    return render(request, "favmovie\blogdetails.html",)
+  
+
+def Proced(request):
+       return render(request, "favmovie\proceed.html",)
+    
+    
+
+
+
+
 

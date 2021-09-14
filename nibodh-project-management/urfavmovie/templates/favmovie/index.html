@@ -9,6 +9,7 @@ block title
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'css\stylee.css' %}" />
+<script src="https://kit.fontawesome.com/6e6a6af6d7.js" crossorigin="anonymous"></script>
 {% endblock head %}
 
 
@@ -27,17 +28,61 @@ block title
   <div class="card-body  textcolor">
     <h5 class="card-title  ">{{i.name}}</h5>
     <h7>Director Name : {{i.directorName}}</h7>
-    <h6>Earn : {{i.price}}</h6>
+    <h6>Earn : $  {{i.price}}</h6>
     <h6>Release Date : {{i.releaseDate}}</h6>
     <h6>IMDB Ratings : {{i.ratingImdb}}</h6>
-    
-      <a href="https://www.netflix.com/in/" class="btn btn-danger" target="__blank">WATCH THIS</a>
+    <h6>Rent Price : INR {{i.RentPrice}}</h6>
+    <div class="d-flex justify-content-evenly">
+      <button class="btn btn-danger " onclick="addToCart('{{i.id}}','{{i.name}}','{{i.RentPrice}}')"  >Favourite <i class="fa fa-heart" aria-hidden="true"></i> </button> 
+     
+    </div>
+     
+     
+     
   </div>
 </div>
 
  {% endfor %}
  
 </div>
+
+
+<script>
+
+  const addToCart =(id,name,RentPrice)=>{
+    console.log(id);
+
+
+    var cart = JSON.parse(localStorage.getItem("cart"))
+
+    if(cart)
+    {
+        if(cart[id]){
+        cart[id] =  {RentPrice:RentPrice,name:name,value:cart[id].value + 1}
+        }
+        else{
+          cart[id]={RentPrice:RentPrice,name:name,value:1}
+        }
+    }
+  
+  
+
+else{
+cart = {[id]:{name:name,value:1,RentPrice:RentPrice}}
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart))
+var value = JSON.parse(localStorage.getItem("cart"));
+
+document.getElementById("cartId").innerHTML = Object.keys(value).length
+  }
+
+    
+  
+
+  </script>
+
  
 
 

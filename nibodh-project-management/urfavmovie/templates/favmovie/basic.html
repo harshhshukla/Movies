@@ -13,7 +13,7 @@
  {% block css %}  
  
  
- }
+
  {% endblock css %}
 
 
@@ -23,10 +23,10 @@
 </head>
 <body>
 
-   <div class="navbar navback">
-    <nav class="navbar navbar-expand-lg navbar-dark   ">
+   <div class="navbar navback   " style="background-color: black;">
+    <nav class="navbar navbar-expand-lg navbar-dark  ">
         <div class="container-fluid  ">
-          <a class="navbar-brand" href="/">Nibodh</a>
+          <a class="navbar-brand" href="/course">Nibodh</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -35,18 +35,87 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/course">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/course/list">course list</a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="/urfavmovie/favlist">Favourite movies</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/urfavmovie/contactus">Contact Us</a>
               </li>
+              
               <li class="nav-item">
-                <a class="nav-link" href="/urfavmovie/blogdetails/">Blogs</a>
+                
+               <a class="nav-link" href="/blog/bloglist"  >Reviews</a>
               </li>
+              
+
+               <li class="nav-item">
+             
+                
+                
+
+                
+
+                <!-- Button trigger modal -->
+							<button type="button" onclick="putDataInCartPopup()"class="btn nav-link"data-bs-toggle="modal"data-bs-target="#cartPopup" >
+              Favourite(<span id="cartId"></span>) </button>
+             
+
+            <!-- Modal -->
+            <div
+              class="modal fade  "id="cartPopup"tabindex="-1"aria-labelledby="cartPopupLabel"aria-hidden="true"  >
+              <div class="modal-dialog modal-dialog-centered   modalcolo">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="cartPopupLabel">
+                      Favourite
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body ">
+                    <ul class="list-group " id="cart-items">
+                      
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+<form action="/urfavmovie/checkout/" method="post">
+{% csrf_token %}
+<input type="hidden" id="card-hidden" name="cartJson" >
+<button
+onclick="addHiddenVal()"
+                    type="submit"
+                    href="/urfavmovie/checkout/"
+                      
+                      class="btn btn-danger"
+                      
+                    >
+                      Rent Now
+                  </button></form>
+
+                    
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+
+
+
+
+
+
+
+               </li>
               
               
               
@@ -55,7 +124,83 @@
         </div>
       </nav>
     </div>
+ 
+    <script>
 
+      const addHiddenVal=()=>{
+        var input = document.getElementById("card-hidden");
+        input.value = localStorage.getItem("cart");
+      }
+
+const updateCartButton = () =>{
+  var value = JSON.parse(localStorage.getItem("cart"));
+
+document.getElementById("cartId").innerHTML =value?Object.keys(value).length:0
+}
+
+  
+ updateCartButton()
+  
+
+const addItem = (id) =>{
+  console.log("ItemAdd" + " " + id  );
+  var cart = JSON.parse(localStorage.getItem("cart"));
+  cart[id] = {...cart[id],value: cart[id].value + 1}
+  
+
+  localStorage.setItem("cart",JSON.stringify(cart))
+  putDataInCartPopup()
+  updateCartButton()
+ 
+};
+
+const removeItem = (id) =>{
+  console.log("removeItem" + " " + id );
+  var cart = JSON.parse(localStorage.getItem("cart"));
+  cart[id] = {...cart[id],value: cart[id].value - 1}
+
+  var slug = cart[id].value
+
+  if(slug<=0){
+  delete cart[id]
+}
+
+
+  localStorage.setItem("cart",JSON.stringify(cart))
+  putDataInCartPopup()
+  updateCartButton()
+};
+
+
+
+const putDataInCartPopup = () => {
+				var cart = JSON.parse(localStorage.getItem("cart"));
+
+				var htmlStr = "";
+        addHiddenVal()
+       
+        
+
+        
+		   Object.keys(cart).map((item) => {
+					htmlStr = htmlStr + " " +
+						//`<li class="list-group-item d-flex justify-content-between" >${cart[item]}</i><span class="badge bg-secondary"  onclick="removeItem(${item})">${cart[item.value]}</span></li>`;
+
+
+
+
+
+
+            `<li class="list-group-item d-flex justify-content-between">${cart[item].name}  <span class="d-flex">INR${cart[item].RentPrice}<span></span><span onclick="removeItem(${item})"><span class="badge bg-dark">REMOVE</span></span></span></li>`;
+            
+				});
+        
+
+        document.getElementById("cart-items").innerHTML = htmlStr
+
+      }
+
+      </script>
     {% block body %}  {% endblock body %}
 
 

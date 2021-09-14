@@ -10,6 +10,7 @@ class favmovie(models.Model):
     releaseDate = models.DateField(default=timezone.now)
     ratingImdb = models.IntegerField(default=0)
     posters = models.ImageField(upload_to="urfavmovie\images",default="")
+    RentPrice = models.FloatField(default=0)
     
     def __str__(self):
         return self.name
